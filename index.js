@@ -14,12 +14,12 @@ try {
       event: "push",
     })
     .then((res) => {
-      core.debug(res.data);
+      core.debug('workflow_runs.length: ' + res.data.workflow_runs.length);
       const lastSuccessCommitHash =
         res.data.workflow_runs.length > 0
           ? res.data.workflow_runs[0].head_commit.id
           : "";
-      core.debug(lastSuccessCommitHash);
+      core.debug('lastSuccessCommitHash: ' + lastSuccessCommitHash);
       core.setOutput("commit_hash", lastSuccessCommitHash);
     })
     .catch((e) => {
